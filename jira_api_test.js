@@ -2,6 +2,10 @@ const fetch = require('node-fetch');
 const credentials = require('./credentials.js');
 const base64 = require('base-64');
 const express = require('express');
+require('dotenv').config();
+
+const ATLASSIAN_API_USERNAME = process.env.ATLASSIAN_API_USERNAME;
+const ATLASSIAN_API_KEY = process.env.ATLASSIAN_API_KEY;
 
 var app = express();
 
@@ -10,7 +14,7 @@ let ticketID = JTC-83
 const url = `https://jaredbacatest.atlassian.net/rest/servicedeskapi/request/${ticketID}`
 
 const headers = new Headers({
-    "Authorization": "Basic " + base64.encode(credentials.atlassian.username + ":" + credentials.atlassian.api_key),
+    "Authorization": "Basic " + base64.encode(ATLASSIAN_API_USERNAME + ":" + ATLASSIAN_API_KEY),
     "Accept": "application/json",
     "Content-Type": "application/json"
 })
