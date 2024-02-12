@@ -1,6 +1,9 @@
 var bodyParser = require('body-parser');
 const base64 = require('base-64');
-const credentials = require('./credentials')
+require('dotenv').config();
+
+const ATLASSIAN_API_USERNAME = process.env.ATLASSIAN_API_USERNAME;
+const ATLASSIAN_API_KEY = process.env.ATLASSIAN_API_KEY;
 
 function formatJiraComment(jiraCommentURL, eventInfo) {
     // Takes the event info from Calendly POST request and formats it into the body of Jira comment
@@ -978,7 +981,7 @@ exports.addJiraComment = async (req, res) => {
     fetch(jiraCommentURL, {
         method: 'POST',
         headers: {
-            "Authorization": "Basic " + base64.encode(credentials.atlassian.username + ":" + credentials.atlassian.api_key),
+            "Authorization": "Basic " + base64.encode(ATLASSIAN_API_USERNAME + ":" + ATLASSIAN_API_KEY),
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
