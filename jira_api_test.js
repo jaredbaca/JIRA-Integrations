@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const credentials = require('./credentials.js');
 const base64 = require('base-64');
 const express = require('express');
 require('dotenv').config();

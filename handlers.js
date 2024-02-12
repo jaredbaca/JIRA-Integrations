@@ -1,9 +1,11 @@
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env' });
 var bodyParser = require('body-parser');
 const base64 = require('base-64');
-require('dotenv').config();
 
 const ATLASSIAN_API_USERNAME = process.env.ATLASSIAN_API_USERNAME;
 const ATLASSIAN_API_KEY = process.env.ATLASSIAN_API_KEY;
+
 
 function formatJiraComment(jiraCommentURL, eventInfo) {
     // Takes the event info from Calendly POST request and formats it into the body of Jira comment
@@ -658,6 +660,9 @@ exports.addJiraComment = async (req, res) => {
     var eventInfo = calendlyBody.payload.scheduled_event;
     const jiraCommentURL = `https://jaredbacatest.atlassian.net/rest/api/3/issue/${ticketID}/comment`
 
+    console.log(ATLASSIAN_API_KEY);
+    console.log(ATLASSIAN_API_USERNAME);
+
     // Format Jira comment
 
     // Buleted List layout
@@ -976,6 +981,7 @@ exports.addJiraComment = async (req, res) => {
         ]
         }
     }
+
 
     // POST comment to Jira api
     fetch(jiraCommentURL, {

@@ -1,7 +1,7 @@
+require('dotenv').config();
 var express = require('express');
 var bodyParser = require('body-parser');
 const base64 = require('base-64');
-const credentials = require('./credentials')
 const handlers = require('./handlers')
 
 var app = express();
