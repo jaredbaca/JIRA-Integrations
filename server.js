@@ -3,6 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 const base64 = require('base-64');
 const handlers = require('./handlers')
+const PORT = process.env.PORT || 3000;
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -29,6 +30,6 @@ app.use(function(req, res) {
 	res.end('404 Error');
 });
 
-app.listen(3000, function(){
+app.listen(PORT, function(){
   console.log('http://localhost:3000');
 });
