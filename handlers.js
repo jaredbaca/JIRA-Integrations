@@ -653,6 +653,8 @@ exports.addJiraComment = async (req, res) => {
 
   res.status(200);
 
+  console.log(ATLASSIAN_API_KEY);
+
     // Receive Calendly POST request body
     var calendlyBody = await req.body;
     res.send(calendlyBody);
