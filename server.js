@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // GET request
 app.get('/', (req, res) => {
-    res.end('api request received ');
+    res.end('Jira-Calendly Intengration API ');
     console.log('api request received');
 })
 

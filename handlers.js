@@ -651,6 +651,8 @@ function formatJiraComment(jiraCommentURL, eventInfo) {
 
 exports.addJiraComment = async (req, res) => {
 
+  res.status(200);
+
     // Receive Calendly POST request body
     var calendlyBody = await req.body;
     res.send(calendlyBody);
@@ -658,10 +660,7 @@ exports.addJiraComment = async (req, res) => {
     // Parse request body for Jira ticket number and event details
     var ticketID = calendlyBody.payload.questions_and_answers[0].answer;
     var eventInfo = calendlyBody.payload.scheduled_event;
-    const jiraCommentURL = `https://jaredbacatest.atlassian.net/rest/api/3/issue/${ticketID}/comment`
-
-    console.log(ATLASSIAN_API_KEY);
-    console.log(ATLASSIAN_API_USERNAME);
+    const jiraCommentURL = `https://jaredbacatest.atlassian.net/rest/api/3/issue/${ticketID}/comment`;
 
     // Format Jira comment
 
