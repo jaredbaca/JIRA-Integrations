@@ -659,6 +659,7 @@ exports.addJiraComment = async (req, res) => {
     var calendlyBody = await req.body;
     res.send(calendlyBody);
     console.log(calendlyBody);
+    console.log(calendlyBody.payload.questions_and_answers[0].answer);
 
     // Parse request body for Jira ticket number and event details
     var ticketID = calendlyBody.payload.questions_and_answers[0].answer;
