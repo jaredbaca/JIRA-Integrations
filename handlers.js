@@ -662,8 +662,16 @@ exports.addJiraComment = async (req, res) => {
     console.log(calendlyBody.payload.questions_and_answers[0].answer);
 
     // Parse request body for Jira ticket number and event details
-    var ticketID = calendlyBody.payload.questions_and_answers[0].answer;
-    var eventInfo = calendlyBody.payload.scheduled_event;
+    var ticketID;
+
+    if(calendlyBody.payload.questions_and_answers.length == 1) {
+      ticketID = calendlyBody.payload.questions_and_answers[0].answer;
+    } else if (calendlyBody.payload.questions_and_answers.length == 2) {
+      ticketID = calendlyBody.payload.questions_and_answers[1].answer;
+    }
+
+    if(ticketID) {
+      var eventInfo = calendlyBody.payload.scheduled_event;
     const jiraCommentURL = `https://jaredbacatest.atlassian.net/rest/api/3/issue/${ticketID}/comment`;
 
     // Format Jira comment
@@ -1004,5 +1012,8 @@ exports.addJiraComment = async (req, res) => {
         })
         .then(text => console.log(text))
         .catch(err => console.error(err));
+    }
+
+    
 
 }
