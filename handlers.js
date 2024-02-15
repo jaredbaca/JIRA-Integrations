@@ -7,326 +7,326 @@ const ATLASSIAN_API_USERNAME = process.env.ATLASSIAN_API_USERNAME;
 const ATLASSIAN_API_KEY = process.env.ATLASSIAN_API_KEY;
 
 
-function formatJiraComment(jiraCommentURL, eventInfo) {
-    // Takes the event info from Calendly POST request and formats it into the body of Jira comment
-    // Can send either list format or table format (preferred)
+// function formatJiraComment(jiraCommentURL, eventInfo) {
+//     // Takes the event info from Calendly POST request and formats it into the body of Jira comment
+//     // Can send either list format or table format (preferred)
 
-    var bodyDataJSON = {
-        "body" : {
+//     var bodyDataJSON = {
+//         "body" : {
 
-        "version": 1,
-        "type": "doc",
-        "content": [
-            // Header
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "Calendly Event Updated ",
-                "marks": [
-                    {
-                        "type": "strong"
-                    }
-                ]
-              },
-            ]
-          },
-          // Event URI
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "Event URI: "
-              },
-              {
-                "type": "text",
-                "text": `${eventInfo.uri}`,
-                "marks" : [
-                    {
-                        "type": "link",
-                        "attrs": {
-                            "href": `${eventInfo.uri}`,
-                            "title": "Calendly Event"
-      }
-                    }
+//         "version": 1,
+//         "type": "doc",
+//         "content": [
+//             // Header
+//           {
+//             "type": "paragraph",
+//             "content": [
+//               {
+//                 "type": "text",
+//                 "text": "Calendly Event Updated ",
+//                 "marks": [
+//                     {
+//                         "type": "strong"
+//                     }
+//                 ]
+//               },
+//             ]
+//           },
+//           // Event URI
+//           {
+//             "type": "paragraph",
+//             "content": [
+//               {
+//                 "type": "text",
+//                 "text": "Event URI: "
+//               },
+//               {
+//                 "type": "text",
+//                 "text": `${eventInfo.uri}`,
+//                 "marks" : [
+//                     {
+//                         "type": "link",
+//                         "attrs": {
+//                             "href": `${eventInfo.uri}`,
+//                             "title": "Calendly Event"
+//       }
+//                     }
 
-                ]
-              }
-            ]
-          },
-          // Event Name
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "Name: ",
-                "marks": [
-                    {"type": "strong"}
-                ]
-              },
-              {
-                "type": "text",
-                "text": `${eventInfo.name}`
-              }
-            ]
-          },
-          // Date
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "Date: ",
-                "marks": [
-                    {"type": "strong"}
-                ]
-              },
-              {
-                "type": "text",
-                "text": `${eventInfo.start_time}`
-              }
-            ]
-          },
-          // User name
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "User: ",
-                "marks": [
-                    {"type": "strong"}
-                ]
-              },
-              {
-                "type": "text",
-                "text": `${eventInfo.event_memberships[0].user_name}`
-              }
-            ]
-          }
-        ]
-        }
-      }
+//                 ]
+//               }
+//             ]
+//           },
+//           // Event Name
+//           {
+//             "type": "paragraph",
+//             "content": [
+//               {
+//                 "type": "text",
+//                 "text": "Name: ",
+//                 "marks": [
+//                     {"type": "strong"}
+//                 ]
+//               },
+//               {
+//                 "type": "text",
+//                 "text": `${eventInfo.name}`
+//               }
+//             ]
+//           },
+//           // Date
+//           {
+//             "type": "paragraph",
+//             "content": [
+//               {
+//                 "type": "text",
+//                 "text": "Date: ",
+//                 "marks": [
+//                     {"type": "strong"}
+//                 ]
+//               },
+//               {
+//                 "type": "text",
+//                 "text": `${eventInfo.start_time}`
+//               }
+//             ]
+//           },
+//           // User name
+//           {
+//             "type": "paragraph",
+//             "content": [
+//               {
+//                 "type": "text",
+//                 "text": "User: ",
+//                 "marks": [
+//                     {"type": "strong"}
+//                 ]
+//               },
+//               {
+//                 "type": "text",
+//                 "text": `${eventInfo.event_memberships[0].user_name}`
+//               }
+//             ]
+//           }
+//         ]
+//         }
+//       }
 
-    var bodyDataTableJSON = {
-    "body": {
-        "version": 1,
-        "type": "doc",
-        "content": [
-            {
-                "type": "table",
-                "attrs": {
-                    "isNumberColumnEnabled": false,
-                    "layout": "default"
-                },
-                "content": [
+//     var bodyDataTableJSON = {
+//     "body": {
+//         "version": 1,
+//         "type": "doc",
+//         "content": [
+//             {
+//                 "type": "table",
+//                 "attrs": {
+//                     "isNumberColumnEnabled": false,
+//                     "layout": "default"
+//                 },
+//                 "content": [
 
-                    // Title
-                    {
-                        "type": "tableRow",
-                        "content": [
-                            // Cell 1
-                            {
-                            "type": "tableCell",
-                            "attrs": {},
-                            "content": [
-                                {
-                                "type": "paragraph",
-                                "content": [
-                                    {
-                                    "type": "text",
-                                    "text": "Calendly Event Booked",
-                                    "marks": [
-                                        {
-                                            "type": "strong"
-                                        }
-                                    ]
-                                    }
-                                ]
-                                }
-                            ]
-                            }
-                        ]
-                        },
+//                     // Title
+//                     {
+//                         "type": "tableRow",
+//                         "content": [
+//                             // Cell 1
+//                             {
+//                             "type": "tableCell",
+//                             "attrs": {},
+//                             "content": [
+//                                 {
+//                                 "type": "paragraph",
+//                                 "content": [
+//                                     {
+//                                     "type": "text",
+//                                     "text": "Calendly Event Booked",
+//                                     "marks": [
+//                                         {
+//                                             "type": "strong"
+//                                         }
+//                                     ]
+//                                     }
+//                                 ]
+//                                 }
+//                             ]
+//                             }
+//                         ]
+//                         },
 
 
-                    // Row 1 - Event Name
-                    {
-                    "type": "tableRow",
-                    "content": [
-                        // Cell 1
-                        {
-                        "type": "tableCell",
-                        "attrs": {},
-                        "content": [
-                            {
-                            "type": "paragraph",
-                            "content": [
-                                {
-                                "type": "text",
-                                "text": "Event Name"
-                                }
-                            ]
-                            }
-                        ]
-                        },
-                        // Cell 2
-                        {
-                        "type": "tableCell",
-                        "attrs": {},
-                        "content": [
-                            {
-                            "type": "paragraph",
-                            "content": [
-                                {
-                                "type": "text",
-                                "text": `${eventInfo.name}`
-                                }
-                            ]
-                            }
-                        ]
-                        },
-                    ]
-                    },
+//                     // Row 1 - Event Name
+//                     {
+//                     "type": "tableRow",
+//                     "content": [
+//                         // Cell 1
+//                         {
+//                         "type": "tableCell",
+//                         "attrs": {},
+//                         "content": [
+//                             {
+//                             "type": "paragraph",
+//                             "content": [
+//                                 {
+//                                 "type": "text",
+//                                 "text": "Event Name"
+//                                 }
+//                             ]
+//                             }
+//                         ]
+//                         },
+//                         // Cell 2
+//                         {
+//                         "type": "tableCell",
+//                         "attrs": {},
+//                         "content": [
+//                             {
+//                             "type": "paragraph",
+//                             "content": [
+//                                 {
+//                                 "type": "text",
+//                                 "text": `${eventInfo.name}`
+//                                 }
+//                             ]
+//                             }
+//                         ]
+//                         },
+//                     ]
+//                     },
 
-                    // Row 2 - Event URI
-                    {
-                        "type": "tableRow",
-                        "content": [
-                            // Cell 1
-                            {
-                            "type": "tableCell",
-                            "attrs": {},
-                            "content": [
-                                {
-                                "type": "paragraph",
-                                "content": [
-                                    {
-                                    "type": "text",
-                                    "text": "Event URL"
-                                    }
-                                ]
-                                }
-                            ]
-                            },
-                            // Cell 2
-                            {
-                            "type": "tableCell",
-                            "attrs": {},
-                            "content": [
-                                {
-                                "type": "paragraph",
-                                "content": [
-                                    {
-                                    "type": "text",
-                                    "text": `${eventInfo.uri}`,
-                                    "marks" : [
-                                        {
-                                            "type": "link",
-                                            "attrs": {
-                                                "href": `${eventInfo.uri}`,
-                                                "title": "Calendly Event"
-                                            }
-                                        }
+//                     // Row 2 - Event URI
+//                     {
+//                         "type": "tableRow",
+//                         "content": [
+//                             // Cell 1
+//                             {
+//                             "type": "tableCell",
+//                             "attrs": {},
+//                             "content": [
+//                                 {
+//                                 "type": "paragraph",
+//                                 "content": [
+//                                     {
+//                                     "type": "text",
+//                                     "text": "Event URL"
+//                                     }
+//                                 ]
+//                                 }
+//                             ]
+//                             },
+//                             // Cell 2
+//                             {
+//                             "type": "tableCell",
+//                             "attrs": {},
+//                             "content": [
+//                                 {
+//                                 "type": "paragraph",
+//                                 "content": [
+//                                     {
+//                                     "type": "text",
+//                                     "text": `${eventInfo.uri}`,
+//                                     "marks" : [
+//                                         {
+//                                             "type": "link",
+//                                             "attrs": {
+//                                                 "href": `${eventInfo.uri}`,
+//                                                 "title": "Calendly Event"
+//                                             }
+//                                         }
                     
-                                    ]
-                                    }
-                                ]
-                                }
-                            ]
-                            },  
-                        ]
-                    },
+//                                     ]
+//                                     }
+//                                 ]
+//                                 }
+//                             ]
+//                             },  
+//                         ]
+//                     },
 
-                    // Row 3 - Date
-                    {
-                        "type": "tableRow",
-                        "content": [
-                            // Cell 1
-                            {
-                            "type": "tableCell",
-                            "attrs": {},
-                            "content": [
-                                {
-                                "type": "paragraph",
-                                "content": [
-                                    {
-                                    "type": "text",
-                                    "text": "Date"
-                                    }
-                                ]
-                                }
-                            ]
-                            },
-                            // Cell 2
-                            {
-                            "type": "tableCell",
-                            "attrs": {},
-                            "content": [
-                                {
-                                "type": "paragraph",
-                                "content": [
-                                    {
-                                    "type": "text",
-                                    "text": `${new Date(eventInfo.start_time).toUTCString()}`
-                                    }
-                                ]
-                                }
-                            ]
-                            },  
-                        ]
-                    },
+//                     // Row 3 - Date
+//                     {
+//                         "type": "tableRow",
+//                         "content": [
+//                             // Cell 1
+//                             {
+//                             "type": "tableCell",
+//                             "attrs": {},
+//                             "content": [
+//                                 {
+//                                 "type": "paragraph",
+//                                 "content": [
+//                                     {
+//                                     "type": "text",
+//                                     "text": "Date"
+//                                     }
+//                                 ]
+//                                 }
+//                             ]
+//                             },
+//                             // Cell 2
+//                             {
+//                             "type": "tableCell",
+//                             "attrs": {},
+//                             "content": [
+//                                 {
+//                                 "type": "paragraph",
+//                                 "content": [
+//                                     {
+//                                     "type": "text",
+//                                     "text": `${new Date(eventInfo.start_time).toUTCString()}`
+//                                     }
+//                                 ]
+//                                 }
+//                             ]
+//                             },  
+//                         ]
+//                     },
 
-                    // Row 4 - User Name
-                    {
-                        "type": "tableRow",
-                        "content": [
-                            // Cell 1
-                            {
-                            "type": "tableCell",
-                            "attrs": {},
-                            "content": [
-                                {
-                                "type": "paragraph",
-                                "content": [
-                                    {
-                                    "type": "text",
-                                    "text": "Username"
-                                    }
-                                ]
-                                }
-                            ]
-                            },
-                            // Cell 2
-                            {
-                            "type": "tableCell",
-                            "attrs": {},
-                            "content": [
-                                {
-                                "type": "paragraph",
-                                "content": [
-                                    {
-                                    "type": "text",
-                                    "text": `${eventInfo.event_memberships[0].user_name}`
-                                    }
-                                ]
-                                }
-                            ]
-                            },  
-                        ]
-                    },
+//                     // Row 4 - User Name
+//                     {
+//                         "type": "tableRow",
+//                         "content": [
+//                             // Cell 1
+//                             {
+//                             "type": "tableCell",
+//                             "attrs": {},
+//                             "content": [
+//                                 {
+//                                 "type": "paragraph",
+//                                 "content": [
+//                                     {
+//                                     "type": "text",
+//                                     "text": "Username"
+//                                     }
+//                                 ]
+//                                 }
+//                             ]
+//                             },
+//                             // Cell 2
+//                             {
+//                             "type": "tableCell",
+//                             "attrs": {},
+//                             "content": [
+//                                 {
+//                                 "type": "paragraph",
+//                                 "content": [
+//                                     {
+//                                     "type": "text",
+//                                     "text": `${eventInfo.event_memberships[0].user_name}`
+//                                     }
+//                                 ]
+//                                 }
+//                             ]
+//                             },  
+//                         ]
+//                     },
                     
-                ]
-                }
-        ]
-        }
-    }
+//                 ]
+//                 }
+//         ]
+//         }
+//     }
 
-    return JSON.stringify(bodyDataTableJSON)
-}
+//     return JSON.stringify(bodyDataTableJSON)
+// }
 
 // exports.formatJiraComment = (jiraCommentURL, eventInfo) => {
 //     // Takes the event info from Calendly POST request and formats it into the body of Jira comment
