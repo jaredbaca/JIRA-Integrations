@@ -759,7 +759,7 @@ exports.addJiraComment = async (req, res) => {
                       ]
                       },
 
-                      // Row 2 - Event URI
+                      // Row 2 - Scheduled on Behalf Of
                       {
                           "type": "tableRow",
                           "content": [
@@ -773,7 +773,7 @@ exports.addJiraComment = async (req, res) => {
                                   "content": [
                                       {
                                       "type": "text",
-                                      "text": "Event URL"
+                                      "text": "Scheduled on Behalf Of"
                                       }
                                   ]
                                   }
@@ -789,17 +789,7 @@ exports.addJiraComment = async (req, res) => {
                                   "content": [
                                       {
                                       "type": "text",
-                                      "text": `${eventInfo.event}`,
-                                      "marks" : [
-                                          {
-                                              "type": "link",
-                                              "attrs": {
-                                                  "href": `${eventInfo.event}`,
-                                                  "title": "Calendly Event"
-                                              }
-                                          }
-                      
-                                      ]
+                                      "text": `${eventInfo.name}`
                                       }
                                   ]
                                   }
@@ -861,7 +851,7 @@ exports.addJiraComment = async (req, res) => {
                                   "content": [
                                       {
                                       "type": "text",
-                                      "text": "Username"
+                                      "text": "Email"
                                       }
                                   ]
                                   }
@@ -877,7 +867,7 @@ exports.addJiraComment = async (req, res) => {
                                   "content": [
                                       {
                                       "type": "text",
-                                      "text": `${eventInfo.scheduled_event.event_memberships[0].user_name}`
+                                      "text": `${eventInfo.email}`
                                       }
                                   ]
                                   }
