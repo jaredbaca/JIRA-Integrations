@@ -17,8 +17,6 @@ app.get('/', (req, res) => {
     console.log('api request received');
 })
 
-// TODO Move this entire section to a handler, separate out the format Jira comment part into its own function
-
 // Post Request - for use with Calendly Webhook
 app.post('/calendly', handlers.addJiraComment)
 
