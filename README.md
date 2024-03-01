@@ -41,7 +41,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The application contains a database of students, locations, and scheduled events. The web interface allows for viewing current bookings, reserving a space, and provides an admin view for editing and deleting events. Maestro enforces basic scheduling constraints, preventing scheduling conflicts and checking student ID numbers against the student information database.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -72,19 +71,6 @@ Working with Maestro in development mode requires Node.js and npm (Node Package 
 
 Once Node.js and npm have been installed, all additional dependencies can be installed by running the **npm install** terminal command in the root directory. You may need to also run **npm install** from the frontend directory in order to install the Node modules for the React project.
 
-### Setting up the MySQL database
-
-This project requires connecting to an existing MySQL database. The *db_init* file will create the necessary tables along with primary and foreign keys, as well as populate the database with initial data. To do so, it must have a database name, host, and login credentials. These details can be added to the *.env* file for use in the rest of the application. If forking this repository on GitHub, the *.env* file is not included for obvious reasons. In that case, simply create a *.env* file and place it in the root directory.
-
-The following variables should be replaced or added to the *.env* file:\
-\
-MYSQL_USERNAME\
-MYSQL_PASSWORD\
-HOST\
-DB_PORT\
-DB_NAME\
-\
-With the database created and the environment variables set, run the *db_init.js* file to populate the database. The *db_init.js* file will create the User, Location, and Event tables (if they do not already exist) and populate those tables with dummy data (if they are empty). The initial list of default events is scheduled for 03/01/2024. 
 
 ### Launching in Development Mode
 
@@ -108,11 +94,7 @@ Usage
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-The usage of the application should be straightforward. The navigation bar contains links to the master calendar, the booking form, and the admin page (this is included for convenience at the development stage, but will be removed in production). The booking form allows the user to select a date and time, a location from the dropdown list of available locations (which pulls from the database), and enter their First, Last, and Student ID. Of these, the Student ID is the only one that is required, as it pulls all relevant student data from the database.  
 
-Backend validation provides a check that the dates are valid (end date is after start date, time is not outside available hours of 9am – 11:59pm, and most importantly that the selected location is not already booked for the desired time). These checks happen prior to making any database queries. If any of these validation checks fail, the user is presented with an error message and remains on the booking page. If the request is valid, the user receives a success message and is redirected to the home page (master calendar).
-
-The admin page looks similar to the master calendar, but the events are clickable. Clicking an event brings up the event details form, which displays event information. The admin can update the dates, location, and Student ID number. The student data at the bottom of the form is read-only, and is pulled from the database based on Student ID. This form runs the same validation as the event booking form. At the very bottom of the form, the admin has the ability to delete the event, which removes it from the database.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -122,16 +104,10 @@ The admin page looks similar to the master calendar, but the events are clickabl
 ## Roadmap
 
 ### Features to be Added In the Short Term
-- More fleshed out admin page with the ability to edit, add, and delete both users and locations.
-- A “Room Type” field in the booking form that allows the user to filter locations by type (Studio, Ensemble Room, etc.). This will be more necessary as the number of locations grows.
-- More granular booking restrictions for individual spaces, such as that a student be in a specific major, instrument, or semester level.
-- Additional UI features such as forward/back arrows for the date, details available when hovering over calendar events, and confirmation prompt before deleting an event.
-- A user-facing event details page that is read-only
+
 
 ### Long Term Desirable Features
-- User accounts
-- Equipment checkout options 
-- Accompanying mobile app
+
 
 
 
@@ -144,7 +120,7 @@ The admin page looks similar to the master calendar, but the events are clickabl
 
 Jared Baca - jaredbacamusic@gmail.com
 
-Project Link: [https://github.com/jaredbaca/Maestro](https://github.com/jaredbaca/Maestro)
+Project Link: [https://github.com/jaredbaca/JIRA-Integrations](https://github.com/jaredbaca/JIRA-Integrations)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
