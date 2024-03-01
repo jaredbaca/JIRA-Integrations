@@ -89,7 +89,7 @@ The API credentials need to be stored as environment variables. This requires cr
 
 <br/>
 ATLASSIAN_API_USERNAME
-ATLASSIAN_API_KEY
+<br/>ATLASSIAN_API_KEY
 
 ### Launching in Development Mode
 
