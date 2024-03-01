@@ -1,7 +1,7 @@
 <h1 align="center">Jira-Calendly Integration</h1>
 
-  <p align="center">
-    Maestro is a scheduling software designed for reserving all manner of music spaces - from rehearsal rooms and practice rooms to recording studios and production suites. 
+  <p align="left">
+    A simple API designed to integrate Calendly with Jira by generating ticket comments for booked Calendly events. 
     <br />
     <br />
     <a href="https://youtu.be/WoDv9oZ3Zlg">View Project Video</a>
@@ -53,9 +53,10 @@ The application contains a database of students, locations, and scheduled events
 <ul>
 	<li><a href="https://nodejs.org/en">Node.js</a></li>
 	<li><a href="https://expressjs.com">Express</a></li>
-	<li><a href="https://www.mysql.com">MySQL</a></li>
-	<li><a href="https://react.dev">React</a></li>
-	<li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+ 	<li><a href="https://calendly.com/">Calendly</a></li>
+  	<li><a href="https://www.atlassian.com/software/jira">Jira</a></li>
+   	<li><a href="https://www.heroku.com/home">Heroku</a></li>
+	
 </ul>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
