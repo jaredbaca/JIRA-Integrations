@@ -1,4 +1,4 @@
-<h1 align="center">Jira-Calendly Integration</h1>
+<h1 align="left">Jira-Calendly Integration</h1>
 
   <p align="left">
     A simple API designed to integrate Calendly with Jira by generating ticket comments for booked Calendly events. 
