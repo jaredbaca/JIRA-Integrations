@@ -40,7 +40,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
+This simple API endpoint built with Node and Express makes use of Calendly webhooks and the Jira REST API to generate Jira comments for newly booked Calendly events.  
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -65,48 +65,46 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-### Installation
+### Prerequisites
 
-Working with Maestro in development mode requires Node.js and npm (Node Package Manager). See information for installing both here. https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+- Node.js and npm 
+- Atlassian account and an existing Atlassian Jira project space
+- Atlassian REST API Username
+- Atlassian REST API Key
+- Paid Calendly account
+- [Subscribe to Calendly webhooks](https://developer.calendly.com/receive-data-from-scheduled-events-in-real-time-with-webhook-subscriptions)
 
-Once Node.js and npm have been installed, all additional dependencies can be installed by running the **npm install** terminal command in the root directory. You may need to also run **npm install** from the frontend directory in order to install the Node modules for the React project.
+### Calendly Event Form
 
+This integration works by having a custom field in the Calendly event booking form for the existing Jira ticket number. The answers to these custom fields can be accessed in the webhook payload under the "questions_and_answers" field. Currently, the addJiraComment handler function parses this data based on the length of the questions/answers array:
+
+<img width="586" alt="Screen Shot 2024-03-01 at 9 39 52 AM" src="https://github.com/jaredbaca/JIRA-Integrations/assets/110132943/3449f401-8ee8-448c-87af-391a27b169d4">
+
+Depending on the content of the custom question/answer fields, this would need to be updated to make sure the ticket number is properly retrieved.
+
+
+### Setting up API Credentials
+
+The API credentials need to be stored as environment variables. This requires creating a *.env* file in the root directory and placing all API credentials in that file. The variables shoudl be named as follows: 
+
+<br/>
+ATLASSIAN_API_USERNAME
+ATLASSIAN_API_KEY
 
 ### Launching in Development Mode
 
-1.	To launch the backend, open a terminal and navigate to the server directory, then run the following command:
-
-node index.js
-
-This will launch the Node.js server on localhost:4000
-
-2.	To launch the frontend, cd into the frontend directory in a separate terminal window and run the command:
-
-npm start
-	
-This will launch the React development server on localhost:3000. If a browser does not open automatically, manually open a browser and go to localhost:3000 to view the application.
-
-The React frontend forwards all API requests to the Node.js server on port 4000. This is set with the “proxy” setting in the React package.json file. To make calls to the API directly, such as with Postman or in the browser, make sure to use port 4000. 
-Usage
-
+This integration is currently hosted on Heroku for use with my own Jira project. To run the project locally, simply run *node server.js* from the root directory. The server will run on localhost:3000 by default. The Jira ticket functionality can be tested using Postman or CURL commands. 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+The handlers.js file contains all of the logic for receiving the Calendly webhook payload, parsing the data into the necessary format for a Jira comment (in this case, a table with pertinent event data), and then submitting a POST request to the Jira REST API to create the comment. 
+
+When it comes time to actually connect the integration to Calendly's webhooks using the subscription instructions above, a valid public URL will be required for the API endpoint. In my case, I hosted the Node server on Heroku.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-### Features to be Added In the Short Term
-
-
-### Long Term Desirable Features
 
 
 
@@ -129,11 +127,8 @@ Project Link: [https://github.com/jaredbaca/JIRA-Integrations](https://github.co
 <!-- ACKNOWLEDGMENTS -->
 ## References
 
-* [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
-* [Forms in React with Hooks](https://javascript.plainenglish.io/forms-in-react-with-hooks-809a3f38ed4)
-* [Passing Props through Link in react-router](https://www.daggala.com/passing-props-through-link-in-react-router/)
-* [Passing Data via Links in React: A Guide to Effective Data Transfer](https://medium.com/@hammadrao891/passing-data-via-links-in-react-a-guide-to-effective-data-transfer-1e0b030e2a12#:~:text=In%20React%20Router%2C%20we%20can,data%20we%20want%20to%20pass.)
-* [Validating, Creating, and Styling React-Bootstrap Forms](https://clerk.com/blog/validate-create-style-react-bootstrap-forms)
+* [Receive data from scheduled events in real time with webhook subscriptions](https://developer.calendly.com/receive-data-from-scheduled-events-in-real-time-with-webhook-subscriptions)
+* [Jira REST API](https://developer.atlassian.com/server/jira/platform/rest-apis/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
