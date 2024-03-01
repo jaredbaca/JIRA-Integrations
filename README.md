@@ -8,8 +8,8 @@
   </p>
 </div>
 
-<img width="1060" alt="calendly_screenshot" src="https://github.com/jaredbaca/JIRA-Integrations/assets/110132943/553d653e-7df1-4329-8278-0cacc1ebc644">
-<img width="748" alt="jira-calendly-screenshot" src="https://github.com/jaredbaca/JIRA-Integrations/assets/110132943/8aecdf21-c0bc-482f-a19c-090ff7c70f7f">
+<img width="530" alt="calendly_screenshot" src="https://github.com/jaredbaca/JIRA-Integrations/assets/110132943/553d653e-7df1-4329-8278-0cacc1ebc644">
+<img width="374" alt="jira-calendly-screenshot" src="https://github.com/jaredbaca/JIRA-Integrations/assets/110132943/8aecdf21-c0bc-482f-a19c-090ff7c70f7f">
 
 
 
